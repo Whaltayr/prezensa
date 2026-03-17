@@ -1,18 +1,18 @@
 /* ══════════════════════════════════════════════════════
-   PREZENSA — prezensa.js
-   All interactions, animations, cart, filters
+   PREZENSA — prezensa.js  (full rewrite)
    ══════════════════════════════════════════════════════ */
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── PRODUCT DATA ──────────────────────────────────── */
+/* ─────────────────────────────────────────────────────
+   PRODUCT DATA
+───────────────────────────────────────────────────── */
 const PRODUCTS = [
   {
     name: 'Noir Absolu',
     collection: 'Noir Prestige',
     price: 680,
     ml: '50 ml · Parfum',
-    tags: 'Amadeirado · Oriental · Parfum',
     img: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=700&q=85',
     desc_pt: 'Um opaco e misterioso véu de madeiras raras, projetado para o homem que deixa marcas indeléveis — nas salas e nas memórias.',
     desc_en: 'An opaque and mysterious veil of rare woods, designed for the man who leaves indelible marks — in rooms and in memories.',
@@ -25,7 +25,6 @@ const PRODUCTS = [
     collection: 'Noir Prestige',
     price: 620,
     ml: '50 ml · EDP',
-    tags: 'Amadeirado · EDP',
     img: 'https://images.unsplash.com/photo-1541232086319-abe799e6a2c9?w=700&q=85',
     desc_pt: 'A tempestade que antecede a calmaria. Cedro e incenso em camadas que revelam complexidade sem pressa.',
     desc_en: 'The storm before the calm. Cedar and incense in layers that reveal complexity without hurry.',
@@ -38,7 +37,6 @@ const PRODUCTS = [
     collection: 'Azul Atlântico',
     price: 540,
     ml: '50 ml · EDT',
-    tags: 'Aquático · Amadeirado · EDT',
     img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700&q=85',
     desc_pt: 'O horizonte infinito captado em vidro. Fresco, elegante e surpreendentemente profundo.',
     desc_en: 'The infinite horizon captured in glass. Fresh, elegant and surprisingly deep.',
@@ -51,7 +49,6 @@ const PRODUCTS = [
     collection: 'Noir Prestige',
     price: 750,
     ml: '50 ml · Parfum',
-    tags: 'Oriental · Parfum',
     img: 'https://images.unsplash.com/photo-1547897885-3f1c3b0b1d07?w=700&q=85',
     desc_pt: 'As rotas antigas do oriente em uma única fragrância. Opulento, raro, intransigente.',
     desc_en: 'The ancient routes of the Orient in a single fragrance. Opulent, rare, uncompromising.',
@@ -64,7 +61,6 @@ const PRODUCTS = [
     collection: 'Lumière',
     price: 520,
     ml: '50 ml · EDT',
-    tags: 'Floral · Chipré · EDT',
     img: 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=700&q=85',
     desc_pt: 'Uma dança etérea de seda e luz matinal. Feminilidade que não precisa se anunciar.',
     desc_en: 'An ethereal dance of silk and morning light. Femininity that needs no announcement.',
@@ -77,7 +73,6 @@ const PRODUCTS = [
     collection: 'Lumière Nuit',
     price: 640,
     ml: '50 ml · EDP',
-    tags: 'Floral · Oriental · EDP',
     img: 'https://images.unsplash.com/photo-1588776814546-1ffbb090d424?w=700&q=85',
     desc_pt: 'A rosa que floresce depois do por do sol. Intensa, sedutora e completamente inesquecível.',
     desc_en: 'The rose that blooms after sunset. Intense, seductive and completely unforgettable.',
@@ -90,7 +85,6 @@ const PRODUCTS = [
     collection: 'Lumière',
     price: 480,
     ml: '50 ml · EDT',
-    tags: 'Floral · Frutal · EDT',
     img: 'https://images.unsplash.com/photo-1571781565036-d3f759be73e5?w=700&q=85',
     desc_pt: 'Um jardim de verão em movimento. Frescor que persiste delicadamente ao longo do dia.',
     desc_en: 'A summer garden in motion. Freshness that lingers delicately throughout the day.',
@@ -103,7 +97,6 @@ const PRODUCTS = [
     collection: 'Lumière',
     price: 560,
     ml: '50 ml · EDP',
-    tags: 'Floral · Almiscarado · EDP',
     img: 'https://images.unsplash.com/photo-1561069934-eee225952461?w=700&q=85',
     desc_pt: 'Veludo invisível sobre a pele. Uma fragrância que envolve como um abraço quente e inesperado.',
     desc_en: 'Invisible velvet on the skin. A fragrance that wraps like a warm, unexpected embrace.',
@@ -113,19 +106,20 @@ const PRODUCTS = [
   }
 ];
 
-/* ── STATE ─────────────────────────────────────────── */
-let cart = [];
+/* ─────────────────────────────────────────────────────
+   SHARED STATE
+───────────────────────────────────────────────────── */
+let cart        = [];
 let currentMode = 'gent';
 let currentLang = 'pt';
-const html = document.documentElement;
+const html      = document.documentElement;
 
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    SPLASH
-   ══════════════════════════════════════════════════════ */
-const splash = document.getElementById('splash');
+═══════════════════════════════════════════════════════ */
+const splash      = document.getElementById('splash');
 const splashEnter = document.getElementById('splashEnter');
 
-// Language selection in splash
 splash.querySelectorAll('.splash__lang-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     splash.querySelectorAll('.splash__lang-btn').forEach(b => b.classList.remove('active'));
@@ -136,61 +130,214 @@ splash.querySelectorAll('.splash__lang-btn').forEach(btn => {
 
 function dismissSplash() {
   splash.classList.add('gone');
-  setTimeout(() => { splash.style.display = 'none'; }, 1000);
-  startHeroAnimation();
+  setTimeout(() => { splash.style.display = 'none'; }, 900);
+  initHero();
 }
 
 splashEnter.addEventListener('click', dismissSplash);
-
-// Auto-dismiss after 5 seconds
 setTimeout(dismissSplash, 5000);
 
-/* ══════════════════════════════════════════════════════
-   HERO GSAP ENTRANCE
-   ══════════════════════════════════════════════════════ */
-function startHeroAnimation() {
-  const tl = gsap.timeline({ delay: 0.2 });
-  tl.to('.hero__label',  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0 })
-    .to('.hero__title',  { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.3')
-    .to('.hero__sub',    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.6')
-    .to('.btn-lux',      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4');
+/* ═══════════════════════════════════════════════════════
+   HERO ENTRANCE
+   Uses gsap.set() to establish the "from" state only when
+   called, then gsap.to() to animate to the natural state.
+   This way no element is hidden until dismissSplash fires.
+═══════════════════════════════════════════════════════ */
+function initHero() {
+  // Set the start states right now, just before animating
+  gsap.set(['.hero__label', '.hero__title', '.hero__sub', '.hero__cta-btn'], {
+    opacity: 0,
+    y: 24,
+  });
 
-  // Parallax
+  const tl = gsap.timeline({ delay: 0.15 });
+  tl.to('.hero__label',   { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' })
+    .to('.hero__title',   { opacity: 1, y: 0, duration: 0.95, ease: 'power3.out' }, '-=0.35')
+    .to('.hero__sub',     { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' }, '-=0.55')
+    .to('.hero__cta-btn', { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '-=0.4');
+
+  // Parallax — only on the hero image, safe to run anytime
   gsap.to('.hero__img', {
-    yPercent: 15,
+    yPercent: 18,
     ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1.5,
+    },
   });
 }
 
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
+   SCROLL-REVEAL HELPER
+   Uses gsap.fromTo() + immediateRender:false so the "from"
+   state is never applied until the trigger actually fires.
+   Elements stay fully visible in their CSS default state
+   until that moment — no premature hiding.
+═══════════════════════════════════════════════════════ */
+function scrollReveal(targets, fromVars, toVars, triggerEl, startPos = 'top 84%') {
+  const elements = typeof targets === 'string'
+    ? document.querySelectorAll(targets)
+    : [targets];
+
+  if (!elements.length) return;
+
+  // Decide trigger: use passed element, or first matched element
+  const trigger = triggerEl || elements[0];
+
+  gsap.fromTo(
+    elements,
+    { ...fromVars, immediateRender: false },
+    {
+      ...toVars,
+      scrollTrigger: {
+        trigger,
+        start: startPos,
+        once: true,
+      },
+    }
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   SECTION SCROLL ANIMATIONS
+   All registered after DOM is ready. Each call is explicit
+   about its own trigger so nothing bleeds into another.
+───────────────────────────────────────────────────── */
+function initScrollAnimations() {
+
+  // ── FEATURED ──────────────────────────────────────
+  scrollReveal(
+    '.featured__visual',
+    { opacity: 0, x: -50 },
+    { opacity: 1, x: 0, duration: 1, ease: 'power3.out' },
+    '.featured__layout', 'top 80%'
+  );
+
+  document.querySelectorAll('.featured__info > *').forEach((el, i) => {
+    scrollReveal(
+      el,
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.6, delay: i * 0.09, ease: 'power2.out' },
+      '.featured__info', 'top 82%'
+    );
+  });
+
+  // ── ARTE ──────────────────────────────────────────
+  document.querySelectorAll('.arte__content > *:not(.arte__pillars)').forEach((el, i) => {
+    scrollReveal(
+      el,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out' },
+      '.arte__content', 'top 82%'
+    );
+  });
+
+  document.querySelectorAll('.arte__pillar').forEach((el, i) => {
+    scrollReveal(
+      el,
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.65, delay: i * 0.13, ease: 'power2.out' },
+      '.arte__pillars', 'top 84%'
+    );
+  });
+
+  // ── CONTACT ───────────────────────────────────────
+  document.querySelectorAll('.contato__info > *').forEach((el, i) => {
+    scrollReveal(
+      el,
+      { opacity: 0, x: -28 },
+      { opacity: 1, x: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out' },
+      '.contato__info', 'top 82%'
+    );
+  });
+
+  document.querySelectorAll('.contato__form .form-field, .contato__form .btn-lux').forEach((el, i) => {
+    scrollReveal(
+      el,
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.5, delay: i * 0.08, ease: 'power2.out' },
+      '.contato__form', 'top 82%'
+    );
+  });
+
+  // ── FOOTER ────────────────────────────────────────
+  scrollReveal(
+    '.footer__top',
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+    '.footer__top', 'top 90%'
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   PRODUCT CARD ANIMATIONS
+   Completely separate from ScrollTrigger so filters never
+   break them. animateCards() is called:
+   1. Once on initial page load (after a short delay so the
+      section has rendered and is in a stable state)
+   2. Every time a filter changes (only on visible cards)
+───────────────────────────────────────────────────── */
+function animateCards(visibleCards) {
+  // Kill any in-progress tweens on these cards first
+  visibleCards.forEach(card => gsap.killTweensOf(card));
+
+  gsap.fromTo(
+    visibleCards,
+    { opacity: 0, y: 32, scale: 0.97 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.55,
+      stagger: 0.07,
+      ease: 'power2.out',
+      immediateRender: false,
+      clearProps: 'transform', // clean up after so hover tilt works
+    }
+  );
+}
+
+function initProductCards() {
+  // Use a small timeout so all layout/CSS is fully painted
+  setTimeout(() => {
+    const visible = Array.from(document.querySelectorAll('.prod-card:not(.hidden)'));
+    if (visible.length) animateCards(visible);
+  }, 120);
+}
+
+/* ═══════════════════════════════════════════════════════
    NAV
-   ══════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════ */
 const nav = document.getElementById('nav');
+
 ScrollTrigger.create({
   start: '80px top',
-  onEnter:    () => nav.classList.add('scrolled'),
-  onLeaveBack: () => nav.classList.remove('scrolled')
+  onEnter:     () => nav.classList.add('scrolled'),
+  onLeaveBack: () => nav.classList.remove('scrolled'),
 });
 
-// Mobile nav
 const navToggle = document.getElementById('navToggle');
 const navMenu   = document.getElementById('navMenu');
+
 navToggle.addEventListener('click', () => {
   const open = navMenu.classList.toggle('open');
   navToggle.classList.toggle('open', open);
   document.body.style.overflow = open ? 'hidden' : '';
 });
-navMenu.querySelectorAll('.nav__link').forEach(l => l.addEventListener('click', () => {
-  navMenu.classList.remove('open');
-  navToggle.classList.remove('open');
-  document.body.style.overflow = '';
-}));
 
-/* ══════════════════════════════════════════════════════
+navMenu.querySelectorAll('.nav__link').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+    navToggle.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
    MODE TOGGLE
-   ══════════════════════════════════════════════════════ */
-// Create veil element
+═══════════════════════════════════════════════════════ */
 const veil = document.createElement('div');
 veil.className = 'mode-transition-veil';
 document.body.appendChild(veil);
@@ -199,16 +346,14 @@ function setMode(mode) {
   if (mode === currentMode) return;
   currentMode = mode;
 
-  // Flash veil
   veil.classList.add('flash');
   setTimeout(() => {
     html.setAttribute('data-mode', mode);
-    updateFeaturedForMode(mode);
-    filterProducts();
+    syncFeaturedVisibility(mode);
+    applyFilters(); // re-filter and re-animate cards for new mode
     veil.classList.remove('flash');
-  }, 280);
+  }, 270);
 
-  // Update toggle buttons
   document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.mode === mode);
   });
@@ -218,11 +363,14 @@ document.querySelectorAll('.mode-btn').forEach(btn => {
   btn.addEventListener('click', () => setMode(btn.dataset.mode));
 });
 
-function updateFeaturedForMode(mode) {
-  const gEntEls = document.querySelectorAll('[class*="--gent"]');
-  const ladyEls = document.querySelectorAll('[class*="--lady"]');
-  gEntEls.forEach(el => el.style.display = mode === 'gent' ? '' : 'none');
-  ladyEls.forEach(el => el.style.display = mode === 'lady' ? '' : 'none');
+function syncFeaturedVisibility(mode) {
+  // Swap featured section content
+  document.querySelectorAll('[class*="--gent"]').forEach(el => {
+    el.style.display = mode === 'gent' ? '' : 'none';
+  });
+  document.querySelectorAll('[class*="--lady"]').forEach(el => {
+    el.style.display = mode === 'lady' ? '' : 'none';
+  });
 
   const featuredImg = document.getElementById('featuredImg');
   if (featuredImg) {
@@ -232,18 +380,17 @@ function updateFeaturedForMode(mode) {
   }
 }
 
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    LANGUAGE TOGGLE
-   ══════════════════════════════════════════════════════ */
-const langToggle  = document.getElementById('langToggle');
-const langLabel   = document.getElementById('langLabel');
+═══════════════════════════════════════════════════════ */
+const langToggle = document.getElementById('langToggle');
+const langLabel  = document.getElementById('langLabel');
 
 function setLang(lang) {
   currentLang = lang;
   html.setAttribute('data-lang', lang);
   langLabel.textContent = lang.toUpperCase();
 
-  // Sync footer lang buttons
   document.querySelectorAll('.footer__lang-btn').forEach(btn => {
     btn.style.color = btn.dataset.lang === lang ? 'var(--accent)' : '';
   });
@@ -257,9 +404,9 @@ document.querySelectorAll('.footer__lang-btn').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
 
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    FILTERS
-   ══════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════ */
 let activeFilters = { familia: 'all', ocasiao: 'all', intensidade: 'all' };
 
 document.querySelectorAll('.filter-pills').forEach(group => {
@@ -267,58 +414,55 @@ document.querySelectorAll('.filter-pills').forEach(group => {
     pill.addEventListener('click', () => {
       group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      const g = group.dataset.group;
-      activeFilters[g] = pill.dataset.val;
-      filterProducts();
+      activeFilters[group.dataset.group] = pill.dataset.val;
+      applyFilters();
     });
   });
 });
 
-function filterProducts() {
-  const items = document.querySelectorAll('.prod-card');
+function applyFilters() {
   const { familia, ocasiao, intensidade } = activeFilters;
+  const allCards = document.querySelectorAll('.prod-card');
+  const toShow   = [];
+  const toHide   = [];
 
-  items.forEach((item, i) => {
-    const itemGender     = item.dataset.gender || 'all';
-    const itemFamilia    = item.dataset.familia || '';
-    const itemOcasiao    = item.dataset.ocasiao || '';
-    const itemIntens     = item.dataset.intensidade || '';
+  allCards.forEach(card => {
+    const genderMatch = card.dataset.gender === currentMode;
+    const famMatch    = familia    === 'all' || (card.dataset.familia    || '').includes(familia);
+    const ocaMatch    = ocasiao    === 'all' || (card.dataset.ocasiao    || '').includes(ocasiao);
+    const intMatch    = intensidade === 'all' || (card.dataset.intensidade || '').includes(intensidade);
 
-    const modeOk    = currentMode === 'all' || itemGender === currentMode;
-    const famOk     = familia === 'all' || itemFamilia.includes(familia);
-    const ocaOk     = ocasiao === 'all' || itemOcasiao.includes(ocasiao);
-    const intOk     = intensidade === 'all' || itemIntens.includes(intensidade);
-
-    const visible = modeOk && famOk && ocaOk && intOk;
-
-    if (visible) {
-      item.classList.remove('hidden');
-      gsap.fromTo(item,
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.4, delay: i * 0.04, ease: 'power2.out' }
-      );
+    if (genderMatch && famMatch && ocaMatch && intMatch) {
+      toShow.push(card);
     } else {
-      gsap.to(item, { opacity: 0, y: -8, duration: 0.2, ease: 'power1.in',
-        onComplete: () => item.classList.add('hidden') });
+      toHide.push(card);
     }
   });
+
+  // Instantly hide non-matching cards
+  toHide.forEach(card => {
+    gsap.killTweensOf(card);
+    gsap.set(card, { opacity: 0 });
+    card.classList.add('hidden');
+  });
+
+  // Reveal matching cards with staggered entrance
+  toShow.forEach(card => card.classList.remove('hidden'));
+  if (toShow.length) animateCards(toShow);
 }
 
-// Initial filter to show only current mode's products
-filterProducts();
-
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    CART
-   ══════════════════════════════════════════════════════ */
-const cartTrigger  = document.getElementById('cartTrigger');
-const cartOverlay  = document.getElementById('cartOverlay');
-const sideCart     = document.getElementById('sideCart');
-const cartClose    = document.getElementById('cartClose');
-const cartItems    = document.getElementById('cartItems');
-const cartEmpty    = document.getElementById('cartEmpty');
-const cartFooter   = document.getElementById('cartFooter');
-const cartCountEl  = document.getElementById('cartCount');
-const cartTotalEl  = document.getElementById('cartTotal');
+═══════════════════════════════════════════════════════ */
+const cartTrigger = document.getElementById('cartTrigger');
+const cartOverlay = document.getElementById('cartOverlay');
+const sideCart    = document.getElementById('sideCart');
+const cartClose   = document.getElementById('cartClose');
+const cartItems   = document.getElementById('cartItems');
+const cartEmpty   = document.getElementById('cartEmpty');
+const cartFooter  = document.getElementById('cartFooter');
+const cartCountEl = document.getElementById('cartCount');
+const cartTotalEl = document.getElementById('cartTotal');
 
 function openCart() {
   sideCart.classList.add('open');
@@ -345,8 +489,11 @@ function addToCart(name, price) {
   renderCart();
   openCart();
 
-  // Bounce cart icon
-  gsap.to(cartTrigger, { scale: 1.25, duration: 0.15, yoyo: true, repeat: 1, ease: 'power1.out' });
+  // Bounce the cart icon
+  gsap.fromTo(cartTrigger,
+    { scale: 1 },
+    { scale: 1.28, duration: 0.14, yoyo: true, repeat: 1, ease: 'power1.out' }
+  );
 }
 
 function removeFromCart(name) {
@@ -355,7 +502,7 @@ function removeFromCart(name) {
 }
 
 function renderCart() {
-  // Remove old items (not empty message)
+  // Clear previous items (keep the empty-state element)
   cartItems.querySelectorAll('.cart-item').forEach(el => el.remove());
 
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
@@ -364,18 +511,16 @@ function renderCart() {
   cartEmpty.style.display = cart.length === 0 ? 'flex' : 'none';
   cartFooter.style.display = cart.length === 0 ? 'none' : 'flex';
 
-  // Count badge
   cartCountEl.textContent = count;
   cartCountEl.classList.toggle('visible', count > 0);
 
-  // Render items
   cart.forEach(item => {
     const el = document.createElement('div');
     el.className = 'cart-item';
     el.innerHTML = `
       <div>
         <div class="cart-item__name">${item.name}</div>
-        <div class="cart-item__price">R$ ${item.price.toLocaleString('pt-BR')} ${item.qty > 1 ? '× ' + item.qty : ''}</div>
+        <div class="cart-item__price">R$ ${item.price.toLocaleString('pt-BR')}${item.qty > 1 ? ' × ' + item.qty : ''}</div>
       </div>
       <button class="cart-item__remove" data-name="${item.name}">
         <span class="txt-pt">Remover</span>
@@ -384,15 +529,18 @@ function renderCart() {
     `;
     el.querySelector('.cart-item__remove').addEventListener('click', () => removeFromCart(item.name));
     cartItems.appendChild(el);
-    gsap.from(el, { opacity: 0, x: 20, duration: 0.3, ease: 'power2.out' });
+    gsap.fromTo(el,
+      { opacity: 0, x: 20 },
+      { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out', immediateRender: false }
+    );
   });
 
   cartTotalEl.textContent = 'R$ ' + total.toLocaleString('pt-BR');
 }
 
-// Add to cart buttons in grid
+// Grid add buttons
 document.querySelectorAll('.add-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener('click', e => {
     e.stopPropagation();
     addToCart(btn.dataset.name, btn.dataset.price);
     btn.classList.add('added');
@@ -402,29 +550,30 @@ document.querySelectorAll('.add-btn').forEach(btn => {
 
 // Featured add button
 document.getElementById('featuredAdd')?.addEventListener('click', () => {
-  const btn = document.getElementById('featuredAdd');
+  const btn   = document.getElementById('featuredAdd');
   const name  = currentMode === 'gent' ? btn.dataset.nameGent  : btn.dataset.nameLady;
   const price = currentMode === 'gent' ? btn.dataset.priceGent : btn.dataset.priceLady;
   addToCart(name, price);
 });
 
-/* ── WhatsApp Checkout ───────────────────────────── */
+// WhatsApp checkout
 document.getElementById('whatsappCheckout')?.addEventListener('click', () => {
-  if (cart.length === 0) return;
-  const lang = currentLang;
-  const items = cart.map(i => `• ${i.name} (${i.qty}×) — R$ ${(i.price * i.qty).toLocaleString('pt-BR')}`).join('\n');
+  if (!cart.length) return;
+  const lines = cart.map(i =>
+    `• ${i.name} (${i.qty}×) — R$ ${(i.price * i.qty).toLocaleString('pt-BR')}`
+  ).join('\n');
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-  const msgPt = `Olá! Gostaria de encomendar os seguintes itens da vitrine Prezensa:\n\n${items}\n\n*Total: R$ ${total.toLocaleString('pt-BR')}*\n\nPoderia me orientar sobre a entrega e disponibilidade?`;
-  const msgEn = `Hello! I'd like to order the following items from the Prezensa showcase:\n\n${items}\n\n*Total: R$ ${total.toLocaleString('pt-BR')}*\n\nCould you advise me on delivery and availability?`;
+  const msg = currentLang === 'pt'
+    ? `Olá! Gostaria de encomendar os seguintes itens da vitrine Prezensa:\n\n${lines}\n\n*Total: R$ ${total.toLocaleString('pt-BR')}*\n\nPoderia me orientar sobre a entrega e disponibilidade?`
+    : `Hello! I'd like to order the following items from the Prezensa showcase:\n\n${lines}\n\n*Total: R$ ${total.toLocaleString('pt-BR')}*\n\nCould you advise me on delivery and availability?`;
 
-  const msg = lang === 'pt' ? msgPt : msgEn;
   window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
 });
 
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    OLFACTORY PYRAMID MODAL
-   ══════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════ */
 const pyramidOverlay = document.getElementById('pyramidOverlay');
 const pyramidClose   = document.getElementById('pyramidClose');
 
@@ -432,34 +581,34 @@ function openPyramid(index) {
   const p = PRODUCTS[index];
   if (!p) return;
 
-  const lang = currentLang;
-  document.getElementById('pyramidImg').src   = p.img;
-  document.getElementById('pyramidImg').alt   = p.name;
-  document.getElementById('pyramidLabel').textContent = p.collection;
-  document.getElementById('pyramidName').textContent  = p.name;
-  document.getElementById('pyramidDesc').textContent  = lang === 'pt' ? p.desc_pt : p.desc_en;
-  document.getElementById('pyramidPrice').textContent = `R$ ${p.price.toLocaleString('pt-BR')}`;
+  document.getElementById('pyramidImg').src              = p.img;
+  document.getElementById('pyramidImg').alt              = p.name;
+  document.getElementById('pyramidLabel').textContent    = p.collection;
+  document.getElementById('pyramidName').textContent     = p.name;
+  document.getElementById('pyramidDesc').textContent     = currentLang === 'pt' ? p.desc_pt : p.desc_en;
+  document.getElementById('pyramidPrice').textContent    = `R$ ${p.price.toLocaleString('pt-BR')}`;
 
-  // Fill note spans
-  ['pyramidTop', 'pyramidHeart', 'pyramidBase'].forEach((id, ti) => {
-    const notes = [p.top, p.heart, p.base][ti];
-    const el = document.getElementById(id);
-    el.innerHTML = notes.map(n => `<span>${n}</span>`).join('');
+  ['pyramidTop', 'pyramidHeart', 'pyramidBase'].forEach((id, i) => {
+    document.getElementById(id).innerHTML =
+      [p.top, p.heart, p.base][i].map(n => `<span>${n}</span>`).join('');
   });
 
-  // Add button
-  const addBtn = document.getElementById('pyramidAddBtn');
-  addBtn.onclick = () => {
+  document.getElementById('pyramidAddBtn').onclick = () => {
     addToCart(p.name, p.price);
     closePyramid();
   };
 
-  // Animate tiers
   pyramidOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  // Animate tiers into view — safe inside a timeout so the
+  // modal is visible before GSAP reads their positions
   setTimeout(() => {
-    gsap.from('.pyramid-tier', { opacity: 0, x: -20, stagger: 0.12, duration: 0.45, ease: 'power2.out' });
-  }, 300);
+    gsap.fromTo('.pyramid-tier',
+      { opacity: 0, x: -18, immediateRender: false },
+      { opacity: 1, x: 0, stagger: 0.11, duration: 0.4, ease: 'power2.out' }
+    );
+  }, 280);
 }
 
 function closePyramid() {
@@ -468,137 +617,95 @@ function closePyramid() {
 }
 
 pyramidClose.addEventListener('click', closePyramid);
-pyramidOverlay.addEventListener('click', e => { if (e.target === pyramidOverlay) closePyramid(); });
+pyramidOverlay.addEventListener('click', e => {
+  if (e.target === pyramidOverlay) closePyramid();
+});
 
 document.querySelectorAll('.prod-card__detail-btn').forEach(btn => {
   btn.addEventListener('click', () => openPyramid(parseInt(btn.dataset.product)));
 });
 
-/* ══════════════════════════════════════════════════════
-   SCROLL ANIMATIONS
-   ══════════════════════════════════════════════════════ */
-function reveal(selector, opts = {}) {
-  const defaults = { opacity: 0, y: 30, duration: 0.75, ease: 'power2.out' };
-  document.querySelectorAll(selector).forEach((el, i) => {
-    gsap.from(el, {
-      ...defaults,
-      ...opts,
-      delay: (opts.staggerDelay || 0) * i,
-      scrollTrigger: { trigger: el, start: 'top 86%', once: true }
-    });
-  });
-}
-
-// Featured section
-gsap.from('.featured__visual', {
-  opacity: 0, x: -60, duration: 1, ease: 'power3.out',
-  scrollTrigger: { trigger: '.featured__layout', start: 'top 78%', once: true }
-});
-gsap.from('.featured__info > *', {
-  opacity: 0, y: 24, stagger: 0.1, duration: 0.65, ease: 'power2.out',
-  scrollTrigger: { trigger: '.featured__info', start: 'top 80%', once: true }
-});
-
-// Product cards
-gsap.from('.prod-card', {
-  opacity: 0, y: 40, stagger: 0.08, duration: 0.6, ease: 'power2.out',
-  scrollTrigger: { trigger: '.products-grid', start: 'top 82%', once: true }
-});
-
-// Arte pillars
-gsap.from('.arte__pillar', {
-  opacity: 0, y: 30, stagger: 0.15, duration: 0.65, ease: 'power2.out',
-  scrollTrigger: { trigger: '.arte__pillars', start: 'top 83%', once: true }
-});
-gsap.from('.arte__content > *:not(.arte__pillars)', {
-  opacity: 0, y: 20, stagger: 0.1, duration: 0.65, ease: 'power2.out',
-  scrollTrigger: { trigger: '.arte__content', start: 'top 80%', once: true }
-});
-
-// Contact
-gsap.from('.contato__info > *', {
-  opacity: 0, x: -30, stagger: 0.1, duration: 0.65, ease: 'power2.out',
-  scrollTrigger: { trigger: '.contato__info', start: 'top 80%', once: true }
-});
-gsap.from('.contato__form > *', {
-  opacity: 0, y: 20, stagger: 0.08, duration: 0.55, ease: 'power2.out',
-  scrollTrigger: { trigger: '.contato__form', start: 'top 80%', once: true }
-});
-
-/* ══════════════════════════════════════════════════════
-   MICRO-INTERACTIONS
-   ══════════════════════════════════════════════════════ */
-// Bottle hover 3D tilt
+/* ═══════════════════════════════════════════════════════
+   MICRO-INTERACTIONS — 3D tilt on cards
+═══════════════════════════════════════════════════════ */
 document.querySelectorAll('.prod-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width  - 0.5;
     const y = (e.clientY - r.top)  / r.height - 0.5;
-    gsap.to(card, { rotateY: x * 6, rotateX: -y * 4, transformPerspective: 800, duration: 0.5, ease: 'power1.out' });
+    gsap.to(card, {
+      rotateY: x * 6,
+      rotateX: -y * 4,
+      transformPerspective: 800,
+      duration: 0.45,
+      ease: 'power1.out',
+      overwrite: 'auto',
+    });
   });
   card.addEventListener('mouseleave', () => {
-    gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'elastic.out(1,0.7)' });
+    gsap.to(card, {
+      rotateY: 0,
+      rotateX: 0,
+      duration: 0.55,
+      ease: 'elastic.out(1, 0.6)',
+      overwrite: 'auto',
+    });
   });
 });
 
-// Featured image cursor scale
-const featImg = document.querySelector('.featured__visual');
-if (featImg) {
-  featImg.addEventListener('mousemove', e => {
-    const r = featImg.getBoundingClientRect();
+// Featured image tilt
+const featVisual = document.querySelector('.featured__visual');
+if (featVisual) {
+  featVisual.addEventListener('mousemove', e => {
+    const r = featVisual.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width  - 0.5;
     const y = (e.clientY - r.top)  / r.height - 0.5;
-    gsap.to(featImg, { rotateY: x * 4, rotateX: -y * 3, transformPerspective: 1000, duration: 0.6, ease: 'power1.out' });
+    gsap.to(featVisual, { rotateY: x * 4, rotateX: -y * 3, transformPerspective: 1000, duration: 0.55, ease: 'power1.out', overwrite: 'auto' });
   });
-  featImg.addEventListener('mouseleave', () => {
-    gsap.to(featImg, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'elastic.out(1,0.6)' });
+  featVisual.addEventListener('mouseleave', () => {
+    gsap.to(featVisual, { rotateY: 0, rotateX: 0, duration: 0.65, ease: 'elastic.out(1, 0.6)', overwrite: 'auto' });
   });
 }
 
-/* ══════════════════════════════════════════════════════
-   SMOOTH SCROLL + NAV OFFSET
-   ══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   SMOOTH SCROLL (nav offset aware)
+═══════════════════════════════════════════════════════ */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if (!target) return;
     e.preventDefault();
-    const offset = nav.offsetHeight + 20;
-    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    const top = target.getBoundingClientRect().top + window.scrollY - (nav.offsetHeight + 20);
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
 
-/* ══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════
    CONTACT FORM
-   ══════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════ */
 document.getElementById('contatoForm')?.addEventListener('submit', e => {
   e.preventDefault();
   const nome  = document.getElementById('cNome').value;
   const email = document.getElementById('cEmail').value;
   const msg   = document.getElementById('cMsg').value;
 
-  const wMsg = currentLang === 'pt'
+  const text = currentLang === 'pt'
     ? `Olá! Sou *${nome}* (${email}).\n\n${msg}`
     : `Hello! I'm *${nome}* (${email}).\n\n${msg}`;
 
-  window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(wMsg)}`, '_blank');
+  window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(text)}`, '_blank');
 
-  const btn = e.target.querySelector('.btn-lux');
+  const btn  = e.target.querySelector('.btn-lux');
   const orig = btn.innerHTML;
   btn.innerHTML = currentLang === 'pt' ? '✓ Mensagem enviada!' : '✓ Message sent!';
   setTimeout(() => { btn.innerHTML = orig; }, 3000);
 });
 
-/* ══════════════════════════════════════════════════════
-   FOOTER ACCENT LINE ANIMATION
-   ══════════════════════════════════════════════════════ */
-gsap.from('.footer__top', {
-  opacity: 0, y: 30, duration: 0.85, ease: 'power2.out',
-  scrollTrigger: { trigger: '.footer__top', start: 'top 88%', once: true }
-});
-
-/* ── Initial setup ──────────────────────────────── */
-// Set default mode visibility (gent shows, lady hidden)
-updateFeaturedForMode('gent');
-renderCart();
+/* ═══════════════════════════════════════════════════════
+   INIT — run everything in the right order
+═══════════════════════════════════════════════════════ */
+syncFeaturedVisibility('gent');   // show gent content by default
+applyFilters();                   // show correct cards for initial mode
+initProductCards();               // animate them in after a paint tick
+initScrollAnimations();           // register all scroll-triggered reveals
+renderCart();                     // initialise cart UI
