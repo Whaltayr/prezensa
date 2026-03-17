@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-mode="gent" data-lang="pt">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prezensa — Parfum de Luxe</title>
+  <meta name="description" content="Prezensa: Fragrâncias de luxo para espíritos únicos. Descoberta sensorial guiada por connoisseurs."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant:ital,wght@1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="prezensa.css"/>
+
+  <!-- hreflang SEO -->
+  <link rel="alternate" hreflang="pt" href="https://prezensa.com/"/>
+  <link rel="alternate" hreflang="en" href="https://prezensa.com/en"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ SPLASH ══════════ -->
+<div id="splash" class="splash">
+  <div class="splash__inner">
+    <div class="splash__logo-wrap">
+      <svg class="splash__logo-mark" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="splash__path" d="M8 8 L8 72 M8 8 C8 8 44 8 44 28 C44 48 8 44 8 44" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <line class="splash__path" x1="28" y1="44" x2="52" y2="72" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <p class="splash__name">PREZENSA</p>
+    <p class="splash__tagline">
+      <span class="txt-pt">Parfum de Luxe</span>
+      <span class="txt-en">Luxury Perfumery</span>
+    </p>
+    <div class="splash__lang">
+      <button class="splash__lang-btn active" data-lang="pt">PT</button>
+      <span>·</span>
+      <button class="splash__lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+  <div class="splash__enter" id="splashEnter">
+    <span class="txt-pt">Entrar</span>
+    <span class="txt-en">Enter</span>
+    <div class="splash__enter-line"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ NAV ══════════════ -->
+<nav class="nav" id="nav">
+  <a href="#home" class="nav__logo">PREZENSA</a>
+
+  <div class="nav__center">
+    <div class="mode-toggle">
+      <button class="mode-btn active" data-mode="gent">
+        <span class="txt-pt">Cavalheiros</span>
+        <span class="txt-en">Gentlemen</span>
+      </button>
+      <span class="mode-sep">·</span>
+      <button class="mode-btn" data-mode="lady">
+        <span class="txt-pt">Damas</span>
+        <span class="txt-en">Ladies</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__right">
+    <button class="lang-toggle" id="langToggle">
+      <span id="langLabel">PT</span>
+    </button>
+    <button class="cart-trigger" id="cartTrigger" aria-label="Carrinho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" width="20" height="20">
+        <path d="M6 2 L3 6 v14 a2 2 0 0 0 2 2 h14 a2 2 0 0 0 2-2 V6 l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10 a4 4 0 0 1-8 0"/>
+      </svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <ul class="nav__menu" id="navMenu">
+    <li><a href="#explorador" class="nav__link"><span class="txt-pt">Fragrâncias</span><span class="txt-en">Fragrances</span></a></li>
+    <li><a href="#arte" class="nav__link"><span class="txt-pt">A Arte</span><span class="txt-en">The Art</span></a></li>
+    <li><a href="#contato" class="nav__link"><span class="txt-pt">Atendimento</span><span class="txt-en">Concierge</span></a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ══════════════ -->
+<section class="hero" id="home">
+  <!-- Gent Hero -->
+  <div class="hero__scene hero__scene--gent">
+    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=1800&q=85" alt="Prezensa Gentlemen" class="hero__img"/>
+    <div class="hero__fog"></div>
+  </div>
+  <!-- Lady Hero -->
+  <div class="hero__scene hero__scene--lady">
+    <img src="https://images.unsplash.com/photo-1619994403073-2cec844b8e63?w=1800&q=85" alt="Prezensa Ladies" class="hero__img"/>
+    <div class="hero__fog"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__label">
+      <span class="txt-pt">Coleção Exclusiva</span>
+      <span class="txt-en">Exclusive Collection</span>
+    </div>
+    <h1 class="hero__title hero__title--gent">
+      <em>L'Essence</em><br>du Caractère
+    </h1>
+    <h1 class="hero__title hero__title--lady">
+      <em>L'Éclat</em><br>de la Féminité
+    </h1>
+    <p class="hero__sub hero__sub--gent">
+      <span class="txt-pt">Fragrâncias que definem o homem de substância.</span>
+      <span class="txt-en">Fragrances that define the man of substance.</span>
+    </p>
+    <p class="hero__sub hero__sub--lady">
+      <span class="txt-pt">Uma ode à mulher que ilumina cada ambiente.</span>
+      <span class="txt-en">An ode to the woman who illuminates every room.</span>
+    </p>
+    <a href="#explorador" class="btn-lux">
+      <span class="txt-pt">Explorar Coleção</span>
+      <span class="txt-en">Explore Collection</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="hero__scroll-hint">
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FEATURED ═════════ -->
+<section class="featured" id="featured">
+  <div class="container">
+    <div class="featured__header">
+      <span class="section-label">
+        <span class="txt-pt">Destaque da Estação</span>
+        <span class="txt-en">Season's Highlight</span>
+      </span>
+      <h2 class="section-title">
+        <span class="txt-pt">O Novo <em>Absoluto</em></span>
+        <span class="txt-en">The New <em>Absolute</em></span>
+      </h2>
+    </div>
+    <div class="featured__layout">
+      <div class="featured__visual">
+        <img id="featuredImg" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=900&q=85" alt="Prezensa — Noir Absolu" loading="lazy"/>
+        <div class="featured__glow"></div>
+      </div>
+      <div class="featured__info">
+        <p class="featured__collection">
+          <span class="txt-pt">Coleção</span>
+          <span class="txt-en">Collection</span>
+          · Noir Prestige
+        </p>
+        <h3 class="featured__name featured__name--gent">Noir Absolu</h3>
+        <h3 class="featured__name featured__name--lady" style="display:none">Lumière de Soie</h3>
+        <p class="featured__accord">
+          <span class="featured__note">Sândalo</span>
+          <span class="featured__dot">·</span>
+          <span class="featured__note">Âmbar</span>
+          <span class="featured__dot">·</span>
+          <span class="featured__note">Vetiver</span>
+        </p>
+        <p class="featured__desc featured__desc--gent">
+          <span class="txt-pt">Um opaco e misterioso véu de madeiras raras. Projetado para o homem que deixa marcas indeléveis no ambiente — e nas memórias.</span>
+          <span class="txt-en">An opaque and mysterious veil of rare woods. Designed for the man who leaves indelible marks in every room — and in memories.</span>
+        </p>
+        <p class="featured__desc featured__desc--lady" style="display:none">
+          <span class="txt-pt">Uma dança etérea de seda e luz. Uma fragância para a mulher que transforma cada movimento em poesia silenciosa.</span>
+          <span class="txt-en">An ethereal dance of silk and light. A fragrance for the woman who turns every movement into silent poetry.</span>
+        </p>
+        <div class="featured__price-row">
+          <span class="featured__price featured__price--gent">R$ 680</span>
+          <span class="featured__price featured__price--lady" style="display:none">R$ 520</span>
+          <span class="featured__ml">50 ml · Parfum</span>
+        </div>
+        <div class="featured__actions">
+          <button class="btn-lux" id="featuredAdd"
+            data-name-gent="Noir Absolu" data-price-gent="680"
+            data-name-lady="Lumière de Soie" data-price-lady="520">
+            <span class="txt-pt">Adicionar ao Desejo</span>
+            <span class="txt-en">Add to Wishlist</span>
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('explorador').scrollIntoView({behavior:'smooth'})">
+            <span class="txt-pt">Ver Coleção</span>
+            <span class="txt-en">See Collection</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ EXPLORADOR ═══════ -->
+<section class="explorador" id="explorador">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="section-label">
+        <span class="txt-pt">Vitrine Prezensa</span>
+        <span class="txt-en">Prezensa Showcase</span>
+      </span>
+      <h2 class="section-title">
+        <span class="txt-pt">Explorador de <em>Fragrâncias</em></span>
+        <span class="txt-en">Fragrance <em>Explorer</em></span>
+      </h2>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-group">
+        <span class="filter-label">
+          <span class="txt-pt">Família</span>
+          <span class="txt-en">Family</span>
+        </span>
+        <div class="filter-pills" data-group="familia">
+          <button class="pill active" data-val="all">
+            <span class="txt-pt">Todas</span><span class="txt-en">All</span>
+          </button>
+          <button class="pill" data-val="amadeirado">
+            <span class="txt-pt">Amadeirado</span><span class="txt-en">Woody</span>
+          </button>
+          <button class="pill" data-val="floral">Floral</button>
+          <button class="pill" data-val="oriental">Oriental</button>
+          <button class="pill" data-val="aquatico">
+            <span class="txt-pt">Aquático</span><span class="txt-en">Aquatic</span>
+          </button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">
+          <span class="txt-pt">Ocasião</span>
+          <span class="txt-en">Occasion</span>
+        </span>
+        <div class="filter-pills" data-group="ocasiao">
+          <button class="pill active" data-val="all">
+            <span class="txt-pt">Todas</span><span class="txt-en">All</span>
+          </button>
+          <button class="pill" data-val="noite">
+            <span class="txt-pt">Noite</span><span class="txt-en">Evening</span>
+          </button>
+          <button class="pill" data-val="gala">Gala</button>
+          <button class="pill" data-val="casual">Casual Chic</button>
+          <button class="pill" data-val="dia">
+            <span class="txt-pt">Dia</span><span class="txt-en">Day</span>
+          </button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">
+          <span class="txt-pt">Intensidade</span>
+          <span class="txt-en">Intensity</span>
+        </span>
+        <div class="filter-pills" data-group="intensidade">
+          <button class="pill active" data-val="all">
+            <span class="txt-pt">Todas</span><span class="txt-en">All</span>
+          </button>
+          <button class="pill" data-val="edt">EDT</button>
+          <button class="pill" data-val="edp">EDP</button>
+          <button class="pill" data-val="parfum">Parfum</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+
+      <!-- ── GENT 1 ── -->
+      <article class="prod-card"
+        data-gender="gent"
+        data-familia="amadeirado oriental"
+        data-ocasiao="noite"
+        data-intensidade="parfum">
+        <div class="prod-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80" alt="Noir Absolu" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="0">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Sândalo</span><span class="dot">·</span>
+            <span>Âmbar</span><span class="dot">·</span>
+            <span>Vetiver</span>
+          </div>
+          <h3 class="prod-card__name">Noir Absolu</h3>
+          <p class="prod-card__tags">Amadeirado · Oriental · Parfum</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 680</span>
+            <button class="add-btn" data-name="Noir Absolu" data-price="680">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── GENT 2 ── -->
+      <article class="prod-card"
+        data-gender="gent"
+        data-familia="amadeirado"
+        data-ocasiao="noite gala"
+        data-intensidade="edp">
+        <div class="prod-card__img-wrap">
+          <img src="img/tempest.jfif" alt="Tempest Oak" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="1">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Cedro</span><span class="dot">·</span>
+            <span>Patchouli</span><span class="dot">·</span>
+            <span>Incenso</span>
+          </div>
+          <h3 class="prod-card__name">Tempest Oak</h3>
+          <p class="prod-card__tags">Amadeirado · EDP</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 620</span>
+            <button class="add-btn" data-name="Tempest Oak" data-price="620">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── GENT 3 ── -->
+      <article class="prod-card"
+        data-gender="gent"
+        data-familia="aquatico amadeirado"
+        data-ocasiao="casual"
+        data-intensidade="edt">
+        <div class="prod-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80" alt="Armure Bleue" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="2">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Neroli</span><span class="dot">·</span>
+            <span>Madeira Cinza</span><span class="dot">·</span>
+            <span>Âmbar</span>
+          </div>
+          <h3 class="prod-card__name">Armure Bleue</h3>
+          <p class="prod-card__tags">Aquático · Amadeirado · EDT</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 540</span>
+            <button class="add-btn" data-name="Armure Bleue" data-price="540">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── GENT 4 ── -->
+      <article class="prod-card"
+        data-gender="gent"
+        data-familia="oriental"
+        data-ocasiao="gala"
+        data-intensidade="parfum">
+        <div class="prod-card__img-wrap">
+          <img src="img/atlas.webp" alt="Bronze Atlas" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="3">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Oud</span><span class="dot">·</span>
+            <span>Açafrão</span><span class="dot">·</span>
+            <span>Couro</span>
+          </div>
+          <h3 class="prod-card__name">Bronze Atlas</h3>
+          <p class="prod-card__tags">Oriental · Parfum</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 750</span>
+            <button class="add-btn" data-name="Bronze Atlas" data-price="750">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── LADY 1 ── -->
+      <article class="prod-card"
+        data-gender="lady"
+        data-familia="floral"
+        data-ocasiao="dia casual"
+        data-intensidade="edt">
+        <div class="prod-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Lumière de Soie" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="4">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Rosa de Maio</span><span class="dot">·</span>
+            <span>Pêonia</span><span class="dot">·</span>
+            <span>Musgo</span>
+          </div>
+          <h3 class="prod-card__name">Lumière de Soie</h3>
+          <p class="prod-card__tags">Floral · Chipré · EDT</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 520</span>
+            <button class="add-btn" data-name="Lumière de Soie" data-price="520">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── LADY 2 ── -->
+      <article class="prod-card"
+        data-gender="lady"
+        data-familia="floral oriental"
+        data-ocasiao="noite gala"
+        data-intensidade="edp">
+        <div class="prod-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffbb090d424?w=600&q=80" alt="Rose Noire" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="5">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Rosa Turca</span><span class="dot">·</span>
+            <span>Oud Rosa</span><span class="dot">·</span>
+            <span>Patchouli</span>
+          </div>
+          <h3 class="prod-card__name">Rose Noire</h3>
+          <p class="prod-card__tags">Floral · Oriental · EDP</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 640</span>
+            <button class="add-btn" data-name="Rose Noire" data-price="640">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── LADY 3 ── -->
+      <article class="prod-card"
+        data-gender="lady"
+        data-familia="floral"
+        data-ocasiao="casual dia"
+        data-intensidade="edt">
+        <div class="prod-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1571781565036-d3f759be73e5?w=600&q=80" alt="Pétale d'Or" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="6">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Pera</span><span class="dot">·</span>
+            <span>Freesia</span><span class="dot">·</span>
+            <span>Almíscar</span>
+          </div>
+          <h3 class="prod-card__name">Pétale d'Or</h3>
+          <p class="prod-card__tags">Floral · Frutal · EDT</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 480</span>
+            <button class="add-btn" data-name="Pétale d'Or" data-price="480">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── LADY 4 ── -->
+      <article class="prod-card"
+        data-gender="lady"
+        data-familia="floral"
+        data-ocasiao="dia casual"
+        data-intensidade="edp">
+        <div class="prod-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1561069934-eee225952461?w=600&q=80" alt="Velours Blanc" loading="lazy"/>
+          <div class="prod-card__hover-actions">
+            <button class="prod-card__detail-btn" data-product="7">
+              <span class="txt-pt">Ver Pirâmide</span>
+              <span class="txt-en">View Pyramid</span>
+            </button>
+          </div>
+          <div class="prod-card__glow"></div>
+        </div>
+        <div class="prod-card__body">
+          <div class="prod-card__accord">
+            <span>Jasmim</span><span class="dot">·</span>
+            <span>Ylang</span><span class="dot">·</span>
+            <span>Baunilha</span>
+          </div>
+          <h3 class="prod-card__name">Velours Blanc</h3>
+          <p class="prod-card__tags">Floral · Almiscarado · EDP</p>
+          <div class="prod-card__footer">
+            <span class="prod-price">R$ 560</span>
+            <button class="add-btn" data-name="Velours Blanc" data-price="560">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /products-grid -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PIRÂMIDE MODAL ═══ -->
+<div class="pyramid-overlay" id="pyramidOverlay">
+  <div class="pyramid-modal" id="pyramidModal">
+    <button class="pyramid-close" id="pyramidClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="pyramid-modal__layout">
+      <div class="pyramid-modal__img-wrap">
+        <img id="pyramidImg" src="" alt=""/>
+      </div>
+      <div class="pyramid-modal__content">
+        <p class="pyramid-modal__label" id="pyramidLabel"></p>
+        <h2 class="pyramid-modal__name" id="pyramidName"></h2>
+        <p class="pyramid-modal__desc" id="pyramidDesc"></p>
+
+        <div class="pyramid-visual">
+          <div class="pyramid-tier pyramid-tier--top">
+            <div class="pyramid-tier__label">
+              <span class="txt-pt">Topo</span><span class="txt-en">Top</span>
+            </div>
+            <div class="pyramid-tier__notes" id="pyramidTop"></div>
+          </div>
+          <div class="pyramid-tier pyramid-tier--heart">
+            <div class="pyramid-tier__label">
+              <span class="txt-pt">Coração</span><span class="txt-en">Heart</span>
+            </div>
+            <div class="pyramid-tier__notes" id="pyramidHeart"></div>
+          </div>
+          <div class="pyramid-tier pyramid-tier--base">
+            <div class="pyramid-tier__label">
+              <span class="txt-pt">Fundo</span><span class="txt-en">Base</span>
+            </div>
+            <div class="pyramid-tier__notes" id="pyramidBase"></div>
+          </div>
+        </div>
+
+        <div class="pyramid-modal__actions">
+          <button class="btn-lux" id="pyramidAddBtn">
+            <span class="txt-pt">Adicionar ao Desejo</span>
+            <span class="txt-en">Add to Wishlist</span>
+          </button>
+          <span class="pyramid-modal__price" id="pyramidPrice"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ A ARTE ═══════════ -->
+<section class="arte" id="arte">
+  <div class="arte__bg">
+    <img src="https://images.unsplash.com/photo-1547555999-14e819a4ac9e?w=1400&q=80" alt="A Arte da Perfumaria" loading="lazy"/>
+    <div class="arte__veil"></div>
+  </div>
+  <div class="container">
+    <div class="arte__content">
+      <span class="section-label">
+        <span class="txt-pt">Nossa Filosofia</span>
+        <span class="txt-en">Our Philosophy</span>
+      </span>
+      <h2 class="section-title">
+        <span class="txt-pt">A Arte da <em>Perfumaria</em></span>
+        <span class="txt-en">The Art of <em>Perfumery</em></span>
+      </h2>
+      <p class="arte__text">
+        <span class="txt-pt">Na Prezensa, cada fragrância é composta como uma sinfonia — com notas que se revelam ao longo do tempo, transformando-se sobre a pele de quem a usa. Trabalhamos com matérias-primas de origem rastreável, de campos de jasmim em Grasse a florestas de sândalo em Mysore.</span>
+        <span class="txt-en">At Prezensa, each fragrance is composed like a symphony — with notes that reveal themselves over time, transforming on the skin of the wearer. We work with traceable raw materials, from jasmine fields in Grasse to sandalwood forests in Mysore.</span>
+      </p>
+      <div class="arte__pillars">
+        <div class="arte__pillar">
+          <span class="arte__pillar-num">I</span>
+          <h4>
+            <span class="txt-pt">Matérias Raras</span>
+            <span class="txt-en">Rare Materials</span>
+          </h4>
+          <p>
+            <span class="txt-pt">Ingredientes de origem única, colhidos na estação perfeita.</span>
+            <span class="txt-en">Single-origin ingredients, harvested at the perfect season.</span>
+          </p>
+        </div>
+        <div class="arte__pillar">
+          <span class="arte__pillar-num">II</span>
+          <h4>
+            <span class="txt-pt">Composição Artesanal</span>
+            <span class="txt-en">Artisan Blending</span>
+          </h4>
+          <p>
+            <span class="txt-pt">Cada fórmula desenvolvida por mestres perfumistas com décadas de ofício.</span>
+            <span class="txt-en">Each formula developed by master perfumers with decades of craft.</span>
+          </p>
+        </div>
+        <div class="arte__pillar">
+          <span class="arte__pillar-num">III</span>
+          <h4>
+            <span class="txt-pt">Embalagem Atemporal</span>
+            <span class="txt-en">Timeless Packaging</span>
+          </h4>
+          <p>
+            <span class="txt-pt">Frascos esculpidos para durar gerações. Arte aplicada ao cotidiano.</span>
+            <span class="txt-en">Bottles sculpted to last generations. Art applied to everyday life.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CONTATO ══════════ -->
+<section class="contato" id="contato">
+  <div class="container">
+    <div class="contato__layout">
+      <div class="contato__info">
+        <span class="section-label">
+          <span class="txt-pt">Atendimento Privado</span>
+          <span class="txt-en">Private Concierge</span>
+        </span>
+        <h2 class="section-title">
+          <span class="txt-pt">Seu <em>Concierge</em></span>
+          <span class="txt-en">Your <em>Concierge</em></span>
+        </h2>
+        <p class="contato__desc">
+          <span class="txt-pt">Cada cliente Prezensa merece atenção singular. Nossa equipe de especialistas guia você na escolha da fragrância ideal — desde uma encomenda avulsa a uma coleção personalizada.</span>
+          <span class="txt-en">Every Prezensa client deserves singular attention. Our team of specialists guides you in choosing the ideal fragrance — from a single order to a personalized collection.</span>
+        </p>
+        <div class="contato__details">
+          <a href="https://wa.me/5511999999999" target="_blank" class="contato__cta">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <span class="txt-pt">Iniciar Conversa</span>
+            <span class="txt-en">Start Conversation</span>
+          </a>
+          <a href="mailto:ateliê@prezensa.com" class="contato__email">atelier@prezensa.com</a>
+        </div>
+      </div>
+      <form class="contato__form" id="contatoForm">
+        <div class="form-field">
+          <label>
+            <span class="txt-pt">Seu nome</span>
+            <span class="txt-en">Your name</span>
+          </label>
+          <input type="text" id="cNome" required placeholder="—"/>
+        </div>
+        <div class="form-field">
+          <label>E-mail</label>
+          <input type="email" id="cEmail" required placeholder="—"/>
+        </div>
+        <div class="form-field">
+          <label>
+            <span class="txt-pt">Mensagem</span>
+            <span class="txt-en">Message</span>
+          </label>
+          <textarea id="cMsg" rows="4" placeholder="—"></textarea>
+        </div>
+        <button type="submit" class="btn-lux">
+          <span class="txt-pt">Enviar Mensagem</span>
+          <span class="txt-en">Send Message</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <p class="footer__logo">PREZENSA</p>
+      <p class="footer__tagline">
+        <em>
+          <span class="txt-pt">Parfum de Luxe · São Paulo</span>
+          <span class="txt-en">Luxury Perfumery · São Paulo</span>
+        </em>
+      </p>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__col">
+        <h5>
+          <span class="txt-pt">Coleções</span>
+          <span class="txt-en">Collections</span>
+        </h5>
+        <a href="#explorador">Noir Prestige</a>
+        <a href="#explorador">Lumière</a>
+        <a href="#explorador">
+          <span class="txt-pt">Exclusivos</span>
+          <span class="txt-en">Exclusives</span>
+        </a>
+      </div>
+      <div class="footer__col">
+        <h5>
+          <span class="txt-pt">Maison</span>
+          <span class="txt-en">Maison</span>
+        </h5>
+        <a href="#arte">
+          <span class="txt-pt">A Arte</span>
+          <span class="txt-en">The Art</span>
+        </a>
+        <a href="#contato">
+          <span class="txt-pt">Concierge</span>
+          <span class="txt-en">Concierge</span>
+        </a>
+      </div>
+      <div class="footer__col">
+        <h5>
+          <span class="txt-pt">Idioma</span>
+          <span class="txt-en">Language</span>
+        </h5>
+        <button class="footer__lang-btn" data-lang="pt">Português</button>
+        <button class="footer__lang-btn" data-lang="en">English</button>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Prezensa. <span class="txt-pt">Todos os direitos reservados.</span><span class="txt-en">All rights reserved.</span></p>
+      <p class="footer__craft">
+        <span class="txt-pt">Feito com obsessão pelo detalhe.</span>
+        <span class="txt-en">Made with obsession for detail.</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SIDE CART ════════ -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="side-cart" id="sideCart">
+  <div class="side-cart__header">
+    <h3>
+      <span class="txt-pt">Seus Desejos</span>
+      <span class="txt-en">Your Wishlist</span>
+    </h3>
+    <button class="side-cart__close" id="cartClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="side-cart__items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8" width="48" opacity="0.3"><circle cx="30" cy="30" r="28"/><path d="M20 25 h20 M20 35 h20"/></svg>
+      <p>
+        <span class="txt-pt">Nenhum desejo ainda.</span>
+        <span class="txt-en">No wishes yet.</span>
+      </p>
+    </div>
+  </div>
+  <div class="side-cart__footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="txt-pt">Total da Encomenda</span>
+      <span class="txt-en">Order Total</span>
+      <strong id="cartTotal">R$ 0</strong>
+    </div>
+    <button class="btn-lux btn-lux--full" id="whatsappCheckout">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      <span class="txt-pt">Finalizar com Concierge</span>
+      <span class="txt-en">Checkout via Concierge</span>
+    </button>
+    <p class="cart-note">
+      <span class="txt-pt">Você será conectado ao nosso concierge no WhatsApp.</span>
+      <span class="txt-en">You'll be connected to our WhatsApp concierge.</span>
+    </p>
+  </div>
+</aside>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="prezensa.js"></script>
+</body>
+</html>
