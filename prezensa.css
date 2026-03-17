@@ -1037,7 +1037,7 @@ input, select, textarea { font-family: inherit; }
 }
 
 @media (max-width: 768px) {
-  .nav__center { display: none; }
+  /* .nav__center { display: none; } */
   .nav__menu {
     position: fixed;
     inset: 0;
