@@ -69,7 +69,7 @@ const PRODUCTS = [
     collection: "Lumière",
     price: 520,
     ml: "50 ml · EDT",
-    img: "https://images.unsplash.com/photo-1541643600914-78b084683702?w=700&q=85",
+    img: "/img/lumi.webp",
     desc_pt:
       "Uma dança etérea de seda e luz matinal. Feminilidade que não precisa se anunciar.",
     desc_en:
@@ -150,12 +150,12 @@ function dismissSplash() {
   splash.classList.add("gone");
   setTimeout(() => {
     splash.style.display = "none";
-  }, 900);
+  }, 500);
   initHero();
 }
 
 splashEnter.addEventListener("click", dismissSplash);
-setTimeout(dismissSplash, 5000);
+setTimeout(dismissSplash, 3000);
 
 /* ═══════════════════════════════════════════════════════
    HERO ENTRANCE
@@ -439,7 +439,7 @@ function syncFeaturedVisibility(mode) {
     featuredImg.src =
       mode === "gent"
         ? "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=900&q=85"
-        : "https://images.unsplash.com/photo-1541643600914-78b084683702?w=900&q=85";
+        : "/img/lumi.webp";
   }
 }
 
