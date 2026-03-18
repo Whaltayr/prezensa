@@ -439,7 +439,7 @@ function syncFeaturedVisibility(mode) {
     featuredImg.src =
       mode === "gent"
         ? "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=900&q=85"
-        : "/img/lumi.webp";
+        : "img/lumi.webp";
   }
 }
 
